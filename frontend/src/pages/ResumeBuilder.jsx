@@ -176,10 +176,10 @@ const ResumeBuilder = () => {
             {/* Dark mode toggle */}
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               title="Toggle dark mode"
             >
-              {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
+              {isDark ? <FiSun size={20} className="text-yellow-500" /> : <FiMoon size={20} className="text-gray-700" />}
             </button>
           </div>
 

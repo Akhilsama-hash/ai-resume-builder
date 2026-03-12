@@ -12,25 +12,30 @@ const EmailResumeModal = ({ onClose, resumeData }) => {
       return;
     }
 
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+
     setSending(true);
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'https://ai-resume-builder-wj81.onrender.com';
-      const response = await fetch(`${API_URL}/api/email-resume`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, message, resumeData })
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        alert('Resume sent successfully!');
+      // Simulate email sending with mailto link
+      const subject = `Resume - ${resumeData.name || 'Candidate'}`;
+      const body = message || `Hi,\n\nPlease find my resume attached.\n\nBest regards,\n${resumeData.name || 'Candidate'}`;
+      
+      // Create mailto link
+      const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Open default email client
+      window.location.href = mailtoLink;
+      
+      setTimeout(() => {
+        alert('✅ Email client opened! Please attach your downloaded PDF and send.');
         onClose();
-      } else {
-        alert('Failed to send email');
-      }
+      }, 1000);
     } catch (error) {
       console.error('Error sending email:', error);
-      alert('Failed to send email');
+      alert('Failed to open email client. Please download PDF and send manually.');
     } finally {
       setSending(false);
     }
