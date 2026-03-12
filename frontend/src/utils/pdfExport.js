@@ -14,45 +14,46 @@ export const exportToPDF = async (resumeData, template) => {
       return;
     }
 
-    // Show loading state
-    const originalContent = element.innerHTML;
-    
-    // Capture the element as canvas
+    // Capture the element as canvas with higher scale for better quality
     const canvas = await html2canvas(element, {
-      scale: 2, // Higher quality
+      scale: 3,
       useCORS: true,
       logging: false,
-      backgroundColor: '#ffffff'
+      backgroundColor: '#ffffff',
+      windowWidth: element.scrollWidth,
+      windowHeight: element.scrollHeight
     });
 
-    // Calculate PDF dimensions
-    const imgWidth = 210; // A4 width in mm
-    const pageHeight = 297; // A4 height in mm
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    // A4 dimensions in mm
+    const pdfWidth = 210;
+    const pdfHeight = 297;
+    
+    // Calculate dimensions to fit on one page
+    const imgWidth = pdfWidth;
+    const imgHeight = (canvas.height * pdfWidth) / canvas.width;
     
     // Create PDF
     const pdf = new jsPDF({
       orientation: 'portrait',
       unit: 'mm',
-      format: 'a4'
+      format: 'a4',
+      compress: true
     });
 
-    const imgData = canvas.toDataURL('image/png');
+    const imgData = canvas.toDataURL('image/jpeg', 0.95);
     
-    // Handle multi-page PDF
-    let heightLeft = imgHeight;
-    let position = 0;
-    
-    // Add first page
-    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-    heightLeft -= pageHeight;
-    
-    // Add additional pages if content exceeds one page
-    while (heightLeft > 0) {
-      position = heightLeft - imgHeight;
-      pdf.addPage();
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
+    // If content is taller than one page, scale it down to fit
+    if (imgHeight > pdfHeight) {
+      const scaleFactor = pdfHeight / imgHeight;
+      const scaledWidth = imgWidth * scaleFactor;
+      const scaledHeight = pdfHeight;
+      const xOffset = (pdfWidth - scaledWidth) / 2;
+      
+      pdf.addImage(imgData, 'JPEG', xOffset, 0, scaledWidth, scaledHeight);
+    } else {
+      // Center vertically if shorter than page
+      const yOffset = (pdfHeight - imgHeight) / 2;
+      pdf.addImage(imgData, 'JPEG', 0, yOffset, imgWidth, imgHeight);
     }
 
     // Generate filename
