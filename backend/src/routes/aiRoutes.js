@@ -5,7 +5,10 @@ import {
   getJobMatchSuggestions,
   generateProfessionalSummary,
   improveBulletPoint,
-  storyToResume
+  storyToResume,
+  linkedInImport,
+  grammarCheck,
+  emailResume
 } from '../controllers/aiController.js';
 
 const router = express.Router();
@@ -27,5 +30,14 @@ router.post('/improve-bullet', improveBulletPoint);
 
 // Story to Resume Converter
 router.post('/story-to-resume', storyToResume);
+
+// LinkedIn Import
+router.post('/linkedin-import', linkedInImport);
+
+// Grammar Check
+router.post('/grammar-check', grammarCheck);
+
+// Email Resume
+router.post('/email-resume', emailResume);
 
 export default router;

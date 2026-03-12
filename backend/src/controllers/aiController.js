@@ -171,3 +171,80 @@ export const storyToResume = async (req, res) => {
     res.status(500).json({ error: 'Failed to convert story', details: error.message });
   }
 };
+
+/**
+ * LinkedIn Import (Placeholder)
+ */
+export const linkedInImport = async (req, res) => {
+  try {
+    const { url } = req.body;
+    
+    // Note: Real LinkedIn scraping requires API access or web scraping
+    // This is a placeholder that returns mock data
+    res.json({
+      success: false,
+      message: 'LinkedIn import requires LinkedIn API access. Please enter data manually.',
+      resumeData: null
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to import LinkedIn', details: error.message });
+  }
+};
+
+/**
+ * Grammar Check
+ */
+export const grammarCheck = async (req, res) => {
+  try {
+    const { text } = req.body;
+    
+    if (!text) {
+      return res.status(400).json({ error: 'Text is required' });
+    }
+
+    // Basic grammar checks
+    const issues = [];
+    
+    // Check for common issues
+    if (text.includes('  ')) issues.push({ type: 'spacing', message: 'Double spaces found' });
+    if (!/^[A-Z]/.test(text)) issues.push({ type: 'capitalization', message: 'Should start with capital letter' });
+    if (text.split(' ').length < 3) issues.push({ type: 'length', message: 'Text too short' });
+    
+    // Simple corrections
+    let correctedText = text
+      .replace(/  +/g, ' ')
+      .replace(/^[a-z]/, (match) => match.toUpperCase())
+      .trim();
+    
+    res.json({
+      success: true,
+      issues: issues,
+      correctedText: correctedText,
+      hasIssues: issues.length > 0
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to check grammar', details: error.message });
+  }
+};
+
+/**
+ * Email Resume (Placeholder)
+ */
+export const emailResume = async (req, res) => {
+  try {
+    const { email, message, resumeData } = req.body;
+    
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
+
+    // Note: Real email sending requires email service (SendGrid, AWS SES, etc.)
+    // This is a placeholder
+    res.json({
+      success: false,
+      message: 'Email service not configured. Please download PDF and send manually.'
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to send email', details: error.message });
+  }
+};

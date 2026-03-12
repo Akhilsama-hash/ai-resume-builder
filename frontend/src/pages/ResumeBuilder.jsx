@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
-import { FiDownload, FiZap, FiTarget, FiAward, FiFileText } from 'react-icons/fi';
+import { FiDownload, FiZap, FiTarget, FiAward, FiFileText, FiLinkedin, FiMail, FiMoon, FiSun, FiSave } from 'react-icons/fi';
 import Header from '../components/Header';
 import ResumeForm from '../components/ResumeForm';
 import ResumePreview from '../components/ResumePreview';
 import ATSScoreCard from '../components/ATSScoreCard';
 import JobMatchModal from '../components/JobMatchModal';
 import StoryToResumeModal from '../components/StoryToResumeModal';
+import LinkedInImportModal from '../components/LinkedInImportModal';
+import EmailResumeModal from '../components/EmailResumeModal';
+import ResumeAnalytics from '../components/ResumeAnalytics';
 import { calculateATSScore } from '../services/api';
 import { exportToPDF } from '../utils/pdfExport';
+import { useAutoSave } from '../hooks/useAutoSave';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 const ResumeBuilder = () => {
   const [resumeData, setResumeData] = useState({
@@ -26,7 +31,20 @@ const ResumeBuilder = () => {
   const [selectedTemplate, setSelectedTemplate] = useState('modern');
   const [showJobMatch, setShowJobMatch] = useState(false);
   const [showStoryConverter, setShowStoryConverter] = useState(false);
+  const [showLinkedInImport, setShowLinkedInImport] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
   const [isCalculating, setIsCalculating] = useState(false);
+  
+  const { lastSaved, isSaving, loadSaved } = useAutoSave(resumeData);
+  const { isDark, toggle: toggleDarkMode } = useDarkMode();
+
+  // Load autosaved data on mount
+  useEffect(() => {
+    const saved = loadSaved();
+    if (saved && window.confirm('Found autosaved data. Load it?')) {
+      setResumeData(saved);
+    }
+  }, []);
 
   // Calculate ATS score whenever resume data changes
   useEffect(() => {
@@ -103,27 +121,65 @@ const ResumeBuilder = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-4 mb-8 justify-between items-center">
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex gap-3 flex-wrap">
             <button
               onClick={() => setShowStoryConverter(true)}
-              className="btn-primary flex items-center gap-2"
+              className="btn-primary flex items-center gap-2 text-sm px-3 py-2"
             >
               <FiFileText />
               Story-to-Resume
             </button>
             <button
+              onClick={() => setShowLinkedInImport(true)}
+              className="btn-secondary flex items-center gap-2 text-sm px-3 py-2"
+            >
+              <FiLinkedin />
+              LinkedIn Import
+            </button>
+            <button
               onClick={() => setShowJobMatch(true)}
-              className="btn-secondary flex items-center gap-2"
+              className="btn-secondary flex items-center gap-2 text-sm px-3 py-2"
             >
               <FiTarget />
-              AI Job Match
+              Job Match
             </button>
             <button
               onClick={handleExportPDF}
-              className="btn-secondary flex items-center gap-2"
+              className="btn-secondary flex items-center gap-2 text-sm px-3 py-2"
             >
               <FiDownload />
               Export PDF
+            </button>
+            <button
+              onClick={() => setShowEmailModal(true)}
+              className="btn-secondary flex items-center gap-2 text-sm px-3 py-2"
+            >
+              <FiMail />
+              Email
+            </button>
+          </div>
+
+          <div className="flex items-center gap-3">
+            {/* Auto-save indicator */}
+            {isSaving && (
+              <span className="text-sm text-gray-500 flex items-center gap-1">
+                <FiSave className="animate-pulse" />
+                Saving...
+              </span>
+            )}
+            {lastSaved && !isSaving && (
+              <span className="text-xs text-gray-400">
+                Saved {new Date(lastSaved).toLocaleTimeString()}
+              </span>
+            )}
+            
+            {/* Dark mode toggle */}
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              title="Toggle dark mode"
+            >
+              {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
             </button>
           </div>
 
@@ -161,6 +217,9 @@ const ResumeBuilder = () => {
             </button>
           </div>
         </div>
+
+        {/* Resume Analytics */}
+        <ResumeAnalytics resumeData={resumeData} />
 
         {/* ATS Score Card */}
         {atsScore && (
@@ -221,6 +280,22 @@ const ResumeBuilder = () => {
         <StoryToResumeModal
           onClose={() => setShowStoryConverter(false)}
           onApplyData={handleApplyStoryData}
+        />
+      )}
+
+      {/* LinkedIn Import Modal */}
+      {showLinkedInImport && (
+        <LinkedInImportModal
+          onClose={() => setShowLinkedInImport(false)}
+          onApplyData={handleApplyStoryData}
+        />
+      )}
+
+      {/* Email Resume Modal */}
+      {showEmailModal && (
+        <EmailResumeModal
+          onClose={() => setShowEmailModal(false)}
+          resumeData={resumeData}
         />
       )}
     </div>
