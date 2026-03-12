@@ -1,0 +1,155 @@
+[
+  {
+    "timestamp": "2026-03-12T14:18:10.202Z",
+    "method": "GET",
+    "endpoint": "/dashboard",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "79ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:19:13.788Z",
+    "method": "POST",
+    "endpoint": "/story-to-resume",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "8ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:19:28.228Z",
+    "method": "POST",
+    "endpoint": "/story-to-resume",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "8ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:19:48.695Z",
+    "method": "POST",
+    "endpoint": "/story-to-resume",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "8ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:19:51.605Z",
+    "method": "POST",
+    "endpoint": "/calculate-ats-score",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "4ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:20:14.966Z",
+    "method": "POST",
+    "endpoint": "/generate-summary",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "2ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:20:16.039Z",
+    "method": "POST",
+    "endpoint": "/calculate-ats-score",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "6ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:20:20.086Z",
+    "method": "POST",
+    "endpoint": "/generate-summary",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "3ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:20:21.160Z",
+    "method": "POST",
+    "endpoint": "/calculate-ats-score",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "4ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:23:43.287Z",
+    "method": "POST",
+    "endpoint": "/story-to-resume",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "8ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:23:49.309Z",
+    "method": "POST",
+    "endpoint": "/calculate-ats-score",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "3ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:24:04.948Z",
+    "method": "POST",
+    "endpoint": "/generate-summary",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "1ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:24:05.974Z",
+    "method": "POST",
+    "endpoint": "/calculate-ats-score",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "1ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:24:10.909Z",
+    "method": "POST",
+    "endpoint": "/generate-summary",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "1ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:24:11.937Z",
+    "method": "POST",
+    "endpoint": "/calculate-ats-score",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "1ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:24:20.946Z",
+    "method": "GET",
+    "endpoint": "/dashboard",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "40ms",
+    "status": 200
+  },
+  {
+    "timestamp": "2026-03-12T14:24:31.382Z",
+    "method": "GET",
+    "endpoint": "/dashboard",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
+    "duration": "2ms",
+    "status": 200
+  }
+]
